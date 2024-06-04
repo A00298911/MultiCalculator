@@ -15,7 +15,7 @@ class Calculator {
 
     fun divide(left: Int, right: Int): Int {
         if (right==0){
-            throw IllegalArgumentException("Division by zero is not allowed")
+            throw IllegalArgumentException("Division by zero is not allowed.")
         }
         return left / right
     }
