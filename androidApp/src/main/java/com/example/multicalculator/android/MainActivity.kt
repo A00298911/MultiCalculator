@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.multicalculator.Greeting
@@ -34,6 +35,8 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun CalcView() {
+    val displayText = remember { mutableStateOf("0") }
+
 
 }
 
