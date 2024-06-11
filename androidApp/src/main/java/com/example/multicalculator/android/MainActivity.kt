@@ -19,6 +19,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.example.multicalculator.Greeting
 
 class MainActivity : ComponentActivity() {
@@ -133,10 +134,10 @@ fun GreetingView(text: String) {
     Text(text = text)
 }
 
+
 @Preview
 @Composable
-fun DefaultPreview() {
-    MyApplicationTheme {
-        GreetingView("Hello, Android!")
-    }
+fun DefaultPreview_CalcView() {
+    CalcView()
 }
+
