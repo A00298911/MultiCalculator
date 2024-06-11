@@ -27,6 +27,36 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
+fun CalcView() {
+
+}
+
+@Composable
+fun CalcRow(){
+
+}
+
+@Composable
+fun CalcDisplay() {
+
+}
+
+@Composable
+fun CalcNumericButton(){
+
+}
+
+@Composable
+fun CalcOperationButton(){
+
+}
+
+@Composable
+fun CalcEqualsButton(){
+
+}
+
+@Composable
 fun GreetingView(text: String) {
     Text(text = text)
 }
