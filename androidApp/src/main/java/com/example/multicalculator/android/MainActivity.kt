@@ -46,6 +46,13 @@ fun CalcView() {
         }
         Row {
             Column{
+                for (i in 7 downTo 1 step 3) {
+                    CalcRow(display = displayText, startNum = i, numButtons = 3)
+                }
+                Row {
+                    CalcNumericButton(number = 0, display = displayText)
+                    CalcEqualsButton(display = displayText)
+                }
 
             }
             Column{
