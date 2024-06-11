@@ -3,7 +3,12 @@ package com.example.multicalculator.android
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
@@ -33,22 +38,52 @@ fun CalcView() {
 }
 
 @Composable
-fun CalcRow(){
+fun CalcRow(display: MutableState<String>, startNum: Int, numButtons: Int) {
+    val endNum = startNum + numButtons
+    Row(modifier = Modifier.padding(0.dp)) {
+        for (i in startNum until endNum) {
+            CalcNumericButton(number = i, display = display)
+        }
+    }
+}
+
+@Composable
+fun CalcDisplay(display: MutableState<String>) {
+    Text(
+        text = display.value,
+        modifier = Modifier
+            .height(50.dp)
+            .padding(5.dp)
+            .fillMaxWidth()
+    )
 
 }
 
 @Composable
-fun CalcDisplay() {
+fun CalcNumericButton(number: Int, display: MutableState<String>){
+    Button(
+        onClick = {
+            if (display.value == "0") {
+                display.value = number.toString()
+            } else {
+                display.value += number.toString()
+            }
+        },
+        modifier = Modifier.padding(4.dp)
+    ) {
+        Text(text = number.toString())
+    }
 
 }
 
 @Composable
-fun CalcNumericButton(){
-
-}
-
-@Composable
-fun CalcOperationButton(){
+fun CalcOperationButton(operation: String, display: MutableState<String>) {
+    Button(
+        onClick = { /* Empty OnClick */ },
+        modifier = Modifier.padding(4.dp)
+    ) {
+        Text(text = operation)
+    }
 
 }
 
