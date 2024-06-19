@@ -16,6 +16,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
@@ -41,6 +42,44 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun CalcView() {
     val displayText = remember { mutableStateOf("0") }
+    val leftNumber = rememberSaveable { mutableStateOf(0) }
+    val rightNumber = rememberSaveable { mutableStateOf(0) }
+    val operation = rememberSaveable { mutableStateOf("") }
+    val complete = rememberSaveable { mutableStateOf(false) }
+
+
+    if (complete.value && operation.value.isNotEmpty()) {
+        // a mutable variable named answer and assign a value of 0
+        var answer = 0
+
+        // Create a when statement and use the operation variable
+        when (operation.value) {
+            // Use the strings "+", "-", "*", and "/" to assign the outcome of the operation to the answer variable
+            "+" -> answer = leftNumber.value + rightNumber.value
+            "-" -> answer = leftNumber.value - rightNumber.value
+            "*" -> answer = leftNumber.value * rightNumber.value
+            "/" -> if (rightNumber.value != 0) answer = leftNumber.value / rightNumber.value else answer = 0
+        }
+
+        // Assign the answer variable to the displayText variable
+        displayText.value = answer.toString()
+
+        leftNumber.value = 0
+        rightNumber.value = 0
+        operation.value = ""
+        complete.value = false
+    }
+    else if (operation.value.isNotEmpty() && !complete.value) {
+
+        rightNumber.value = displayText.value.toInt()
+        displayText.value = rightNumber.value.toString()
+        complete.value = true
+    } else {
+
+        leftNumber.value = displayText.value.toInt()
+        displayText.value = leftNumber.value.toString()
+    }
+
     Column(modifier = Modifier.background(Color.LightGray)) {
         Row {
             CalcDisplay(display = displayText)
