@@ -114,9 +114,9 @@ fun CalcView() {
         Row {
             Column{
 
-                CalcRow(startNum = 7, numButtons = 3) { number ->
+                CalcRow(startNum = 7, numButtons = 3, onPress =  { number ->
                     numberPress(number)
-                }
+                })
 
                 Row {
                     CalcNumericButton(number = 0) { num ->
@@ -142,7 +142,7 @@ fun CalcView() {
                 }
             }
         }
-        }
+    }
 
 }
 
